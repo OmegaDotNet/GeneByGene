@@ -1,0 +1,60 @@
+﻿<h1>Samples by Status</h1>
+
+<p>This component fetches samples by status</p>
+
+<h3>Statuses</h3>
+
+<p *ngIf="!statuses"><em>Loading...</em></p>
+
+<table class='table table-striped table-hover' *ngIf="statuses">
+    <thead>
+        <tr>
+            <th>Status Id</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let status of statuses">
+            <td>{{ status.statusId }}</td>
+            <td>{{ status.status }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+
+<form class="form-inline">
+    <div class="form-group">
+        <label>Filter Samples by:</label>
+        <select class="form-control" name="#statuses" *ngIf="statuses" (change)="getFilteredSamples($event.target.value)">
+            <option value="-1">All Statuses</option>
+            <option *ngFor="let status of statuses" value="{{status.statusId}}">{{status.statusId + ' - ' + status.status}}</option>
+        </select>
+    </div>
+</form>
+
+<hr />
+
+<h3 *ngIf="!filtered">Showing All Samples</h3>
+<h3 *ngIf="filtered">Showing {{samples.length}} "{{samples[0].status}}" samples</h3>
+
+<table class='table table-striped table-hover' *ngIf="samples">
+    <thead>
+        <tr>
+            <th>Sample Id</th>
+            <th>Barcode</th>
+            <th>Created At</th>
+            <th>Created By</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sample of samples">
+            <td>{{ sample.sampleId }}</td>
+            <td>{{ sample.barcode }}</td>
+            <td>{{ sample.createdAt }}</td>
+            <td>{{ sample.createdBy }}</td>
+            <td>{{ sample.status }}</td>
+        </tr>
+    </tbody>
+</table>

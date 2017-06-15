@@ -1,0 +1,26 @@
+﻿<h1>Add a Sample</h1>
+
+<p>This component adds a sample</p>
+
+<form class="form">
+    <div class="hidden">
+        <input class="form-control" type="text" #date value="{{today | date:'y'}}-{{today | date:'MM'}}-{{today | date:'d'}}" />
+    </div>
+    <div class="form-group">
+        <label>Barcode:</label>
+        <input class="form-control" type="text" #Barcode />
+    </div>
+    <div class="form-group">
+        <label>Created By:</label>
+        <select class="form-control" #Users *ngIf="users" (change)="setUser($event.target.value)">            
+            <option *ngFor="let user of users" value="{{user.userId}}">{{user.firstName + ' ' + user.lastName}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Status:</label>
+        <select class="form-control" #Statuses *ngIf="statuses" (change)="setStatus($event.target.value)">
+            <option *ngFor="let status of statuses" value="{{status.statusId}}">{{status.statusId + ' - ' + status.status}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default" (click)="addSample(Barcode.value, date.value)">Add Sample</button>
+</form>

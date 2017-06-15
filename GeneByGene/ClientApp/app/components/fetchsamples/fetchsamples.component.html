@@ -1,0 +1,28 @@
+﻿<h1>Samples</h1>
+
+<p>This component fetches all samples, their status and the name of the user that created them.</p>
+
+<p *ngIf="!samples"><em>Loading...</em></p>
+
+<h3 *ngIf="!samples">Showing {{samples.length}} samples</h3>
+
+<table class='table table-striped table-hover' *ngIf="samples">
+    <thead>
+        <tr>
+            <th>Sample Id</th>
+            <th>Barcode</th>
+            <th>Created At</th>
+            <th>Created By</th>            
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sample of samples">
+            <td>{{ sample.sampleId }}</td>
+            <td>{{ sample.barcode }}</td>
+            <td>{{ sample.createdAt }}</td>
+            <td>{{ sample.createdBy }}</td>
+            <td>{{ sample.status }}</td>
+        </tr>
+    </tbody>
+</table>
